@@ -58,7 +58,9 @@ void DiskSpacePlugin::HandleMethodCall(
    if (method_call.method_name().compare("getSerialNumber") == 0) {
    std::string serial_number;
    serial_number = exec("wmic path win32_physicalmedia get SerialNumber");
-    result->Success(flutter::EncodableValue(serial_number));
+   result->Success(flutter::EncodableValue(serial_number));
+   std::cin.clear();
+   std::cin.ignore(2);
   } else {
     result->NotImplemented();
   }

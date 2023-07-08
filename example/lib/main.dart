@@ -22,7 +22,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -56,6 +55,12 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Center(
           child: Text('Running on: $_platformVersion\n'),
+        ),
+        floatingActionButton: ElevatedButton(
+          onPressed: () {
+            initPlatformState();
+          },
+          child: const Text('Click'),
         ),
       ),
     );
