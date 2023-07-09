@@ -7,9 +7,14 @@ class MockDiskSpacePlatform
     with MockPlatformInterfaceMixin
     implements DiskSpacePlatform {
   @override
-  Future<List<String>> getSerialNumber() => Future.value(
+  Future<List<String>> getSerialNumbers() => Future.value(
         <String>['ABCD123154', 'ABCD123154'],
       );
+
+  @override
+  Future<String> getFirstSerialNumber() => Future.value(
+      'ABCD123154'
+  );
 }
 
 void main() {

@@ -23,7 +23,12 @@ abstract class DiskSpacePlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<List<String>> getSerialNumber() {
-    throw UnimplementedError('serialNumber() has not been implemented.');
+  Future<List<String>> getSerialNumbers() {
+    throw UnimplementedError('serialNumbers() has not been implemented.');
   }
+
+  Future<String?> getFirstSerialNumber() {
+    throw UnimplementedError('getFirstSerialNumber() has not been implemented.');
+  }
+
 }

@@ -1,7 +1,7 @@
 name: disk_space
-description: A new Flutter project.
-version: 0.0.1
-homepage:
+description: Plugin for get serial-numbers of windows.
+version: 0.0.3
+homepage: https://github.com/00believers00
 
 environment:
   sdk: '>=3.0.5 <4.0.0'

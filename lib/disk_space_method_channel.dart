@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:disk_space/utils/helpers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -12,21 +11,24 @@ class MethodChannelDiskSpace extends DiskSpacePlatform {
   final methodChannel = const MethodChannel('disk_space');
 
   @override
-  Future<List<String>> getSerialNumber() async {
-    final version = await methodChannel.invokeMethod<String>('getSerialNumber');
+  Future<List<String>> getSerialNumbers() async {
+    final version = await methodChannel.invokeMethod<String>('getSerialNumbers');
     List<String> list = [];
-    if (version != null) {
-      List<String> strList = version.split(' ');
-      for (String v in strList) {
-        if (v.isNotEmpty &&
-            !v.toLowerCase().contains('serialnumber')) {
-          String s = v.replaceAll(RegExp(r"[.|_]|[\n|\-]|\r"), '');
-          if(s.isNotEmpty){
-            list.add(s);
-          }
-        }
-      }
+    if(version != null){
+      list = Helpers.splitSerialnumberText(version);
     }
     return list;
+  }
+  @override
+  Future<String?> getFirstSerialNumber() async {
+    final version = await methodChannel.invokeMethod<String>('getFirstSerialNumber');
+    String? serialNumber;
+    if(version != null){
+      List<String> list = Helpers.splitSerialnumberText(version);
+      if(list.isNotEmpty){
+        serialNumber = list.first;
+      }
+    }
+    return serialNumber;
   }
 }

@@ -30,8 +30,11 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      List<String> list = await _diskSpacePlugin.getSerialNumber();
+      List<String> list = await _diskSpacePlugin.getSerialNumbers();
       platformVersion = list.toString();
+      // Get data first hard disk serial-number.
+      String? serialNumber = await _diskSpacePlugin.getFirstSerialNumber();
+      print('Serial Number:$serialNumber');
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
